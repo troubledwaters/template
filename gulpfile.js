@@ -3,13 +3,15 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const del = require('del');
-const browserSync = require('browser-sync').create();   
+const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass');
 // const static = require('node-static');
 
 
 gulp.task('styles', function(){
     return (
         gulp.src('src/styles/**/*.*')
+            .pipe(sass().on('error', sass.logError))
             .pipe(concat('main.css'))
             .pipe(gulp.dest('public'))
     )
